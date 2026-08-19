@@ -40,6 +40,19 @@ npm run preview  # preview the production build
 - **Responsive** — desktop sidebar + dense grid, mobile bottom-nav layout.
 - **Light & dark** theme toggle. **Indian number formatting** (lakh/crore) throughout.
 
+### Working module screens (beyond the dashboard)
+
+- **Sales & Invoicing** — summary tiles, trend + shift charts, and a sortable /
+  filterable / searchable sale-transaction register (by product, invoice, customer).
+- **Fuel Stock & Inventory** — tank monitoring, product stock register with reorder
+  flags, and a purchase-order table.
+- **Credit Customers** — outstanding/overdue/over-limit summary + the full ledger.
+- **Banks & Cash** — balances, trend, cash reconciliation, and a Credit/Debit-filterable
+  transaction table.
+- **Reports** — a searchable, group-filterable catalogue of generatable statements.
+
+All tables sort on header click; all filters and search are live.
+
 ## Structure
 
 ```

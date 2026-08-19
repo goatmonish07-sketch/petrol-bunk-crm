@@ -3,6 +3,11 @@ import { Sidebar } from './components/layout/Sidebar'
 import { Topbar } from './components/layout/Topbar'
 import { BottomNav } from './components/layout/BottomNav'
 import { DashboardPage } from './features/dashboard/DashboardPage'
+import { SalesPage } from './features/sales/SalesPage'
+import { StockPage } from './features/stock/StockPage'
+import { CreditPage } from './features/credit/CreditPage'
+import { BanksPage } from './features/banks/BanksPage'
+import { ReportsPage } from './features/reports/ReportsPage'
 import { ModulePage } from './features/modules/ModulePage'
 import { useTheme } from './lib/useTheme'
 import { NAV } from './lib/nav'
@@ -25,6 +30,16 @@ export default function App() {
   }
 
   const label = NAV.find((n) => n.id === active)?.label || 'Dashboard'
+
+  const PAGES = {
+    dashboard: DashboardPage,
+    sales: SalesPage,
+    stock: StockPage,
+    credit: CreditPage,
+    banks: BanksPage,
+    reports: ReportsPage,
+  }
+  const Page = PAGES[active]
 
   return (
     <div className="min-h-dvh bg-bg">
@@ -53,10 +68,12 @@ export default function App() {
           <Topbar onOpenMenu={() => setDrawer(true)} theme={theme} onToggleTheme={toggle} />
 
           <main className="mx-auto w-full max-w-[1600px] flex-1 px-3 pb-24 pt-4 sm:px-5 lg:pb-8">
-            <div className="mb-4 lg:hidden">
-              <h1 className="text-lg font-extrabold tracking-tight">{label}</h1>
-            </div>
-            {active === 'dashboard' ? <DashboardPage /> : <ModulePage id={active} />}
+            {active === 'dashboard' && (
+              <div className="mb-4 lg:hidden">
+                <h1 className="text-lg font-extrabold tracking-tight">{label}</h1>
+              </div>
+            )}
+            {Page ? <Page /> : <ModulePage id={active} />}
           </main>
         </div>
       </div>
