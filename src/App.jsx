@@ -8,6 +8,7 @@ import { StockPage } from './features/stock/StockPage'
 import { CreditPage } from './features/credit/CreditPage'
 import { ReportsPage } from './features/reports/ReportsPage'
 import { RecordScreen } from './features/records/RecordScreen'
+import { Landing } from './features/landing/Landing'
 import { useTheme } from './lib/useTheme'
 import { findNav } from './lib/nav'
 import { SCREENS } from './mock/screens'
@@ -23,6 +24,7 @@ const RICH = {
 
 export default function App() {
   const { theme, toggle } = useTheme()
+  const [entered, setEntered] = useState(false)
   const [active, setActive] = useState('dashboard')
   const [drawer, setDrawer] = useState(false)
 
@@ -39,6 +41,10 @@ export default function App() {
 
   const RichPage = RICH[active]
   const config = SCREENS[active]
+
+  if (!entered) {
+    return <Landing onEnter={() => { setActive('dashboard'); setEntered(true) }} />
+  }
 
   return (
     <div className="min-h-dvh bg-bg">
