@@ -6,18 +6,26 @@ import { DashboardPage } from './features/dashboard/DashboardPage'
 import { SalesPage } from './features/sales/SalesPage'
 import { StockPage } from './features/stock/StockPage'
 import { CreditPage } from './features/credit/CreditPage'
-import { BanksPage } from './features/banks/BanksPage'
 import { ReportsPage } from './features/reports/ReportsPage'
-import { ModulePage } from './features/modules/ModulePage'
+import { RecordScreen } from './features/records/RecordScreen'
 import { useTheme } from './lib/useTheme'
-import { NAV } from './lib/nav'
+import { findNav } from './lib/nav'
+import { SCREENS } from './mock/screens'
+
+// Rich, purpose-built pages
+const RICH = {
+  dashboard: DashboardPage,
+  'db-sale': SalesPage,
+  'ps-report': StockPage,
+  'credit-limit': CreditPage,
+  reports: ReportsPage,
+}
 
 export default function App() {
   const { theme, toggle } = useTheme()
   const [active, setActive] = useState('dashboard')
   const [drawer, setDrawer] = useState(false)
 
-  // Close drawer with Escape
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && setDrawer(false)
     window.addEventListener('keydown', onKey)
@@ -29,56 +37,58 @@ export default function App() {
     window.scrollTo({ top: 0 })
   }
 
-  const label = NAV.find((n) => n.id === active)?.label || 'Dashboard'
-
-  const PAGES = {
-    dashboard: DashboardPage,
-    sales: SalesPage,
-    stock: StockPage,
-    credit: CreditPage,
-    banks: BanksPage,
-    reports: ReportsPage,
-  }
-  const Page = PAGES[active]
+  const RichPage = RICH[active]
+  const config = SCREENS[active]
 
   return (
     <div className="min-h-dvh bg-bg">
       <div className="flex">
-        {/* Desktop sidebar */}
         <div className="sticky top-0 hidden h-dvh shrink-0 lg:block">
           <Sidebar active={active} onNavigate={navigate} />
         </div>
 
-        {/* Mobile drawer */}
         {drawer && (
           <div className="fixed inset-0 z-50 lg:hidden">
-            <div
-              className="absolute inset-0 bg-black/50"
-              onClick={() => setDrawer(false)}
-              aria-hidden
-            />
-            <div className="absolute left-0 top-0 h-full animate-fade-up">
+            <div className="absolute inset-0 bg-black/50" onClick={() => setDrawer(false)} aria-hidden />
+            <div className="absolute left-0 top-0 h-full">
               <Sidebar active={active} onNavigate={navigate} onClose={() => setDrawer(false)} />
             </div>
           </div>
         )}
 
-        {/* Main */}
         <div className="flex min-w-0 flex-1 flex-col">
           <Topbar onOpenMenu={() => setDrawer(true)} theme={theme} onToggleTheme={toggle} />
 
-          <main className="mx-auto w-full max-w-[1600px] flex-1 px-3 pb-24 pt-4 sm:px-5 lg:pb-8">
+          <main className="mx-auto w-full max-w-[1600px] flex-1 px-2.5 pb-24 pt-3 sm:px-5 sm:pt-4 lg:pb-8">
             {active === 'dashboard' && (
-              <div className="mb-4 lg:hidden">
-                <h1 className="text-lg font-extrabold tracking-tight">{label}</h1>
+              <div className="mb-3 lg:hidden">
+                <h1 className="text-lg font-extrabold tracking-tight">Dashboard</h1>
               </div>
             )}
-            {Page ? <Page /> : <ModulePage id={active} />}
+            {RichPage ? (
+              <RichPage />
+            ) : config ? (
+              <RecordScreen config={config} />
+            ) : (
+              <PlaceholderPage id={active} />
+            )}
           </main>
         </div>
       </div>
 
       <BottomNav active={active} onNavigate={navigate} onMore={() => setDrawer(true)} />
+    </div>
+  )
+}
+
+function PlaceholderPage({ id }) {
+  const { label } = findNav(id)
+  return (
+    <div className="grid min-h-[50vh] place-items-center text-center">
+      <div>
+        <h1 className="text-xl font-extrabold">{label}</h1>
+        <p className="mt-2 text-sm text-muted">This module is part of the CRM and will open here.</p>
+      </div>
     </div>
   )
 }

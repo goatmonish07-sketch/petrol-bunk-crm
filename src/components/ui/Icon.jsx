@@ -3,6 +3,8 @@ import {
   IndianRupee, TrendingUp, Wallet, Tag, Clock, Search, Printer, Download,
   Menu, Moon, Sun, ChevronRight, Phone, MoreHorizontal, CheckCircle2, Droplet,
   Plus, Package, AlertTriangle, CreditCard, ArrowRight, TrendingDown, Truck,
+  Database, ClipboardList, Sparkles, Gem, ArrowLeftRight, Flag, Files, ChevronDown,
+  Trash2, X, Upload,
 } from 'lucide-react'
 
 const MAP = {
@@ -10,6 +12,8 @@ const MAP = {
   IndianRupee, TrendingUp, Wallet, Tag, Clock, Search, Printer, Download,
   Menu, Moon, Sun, ChevronRight, Phone, MoreHorizontal, CheckCircle2, Droplet,
   Plus, Package, AlertTriangle, CreditCard, ArrowRight, TrendingDown, Truck,
+  Database, ClipboardList, Sparkles, Gem, ArrowLeftRight, Flag, Files, ChevronDown,
+  Trash2, X, Upload,
 }
 
 export function Icon({ name, className = 'h-5 w-5', ...props }) {

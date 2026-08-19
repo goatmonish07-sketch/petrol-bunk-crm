@@ -62,7 +62,7 @@ export function SalesPage() {
       </div>
 
       <div className="grid gap-3 xl:grid-cols-3">
-        <div className="xl:col-span-2"><SalesTrendCard /></div>
+        <div className="min-w-0 xl:col-span-2"><SalesTrendCard /></div>
         <ShiftComparisonCard />
       </div>
 

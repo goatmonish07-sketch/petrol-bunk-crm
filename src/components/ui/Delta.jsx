@@ -14,7 +14,7 @@ export function Delta({ value, suffix = 'vs Yesterday', compact = false }) {
         <Icon className="h-3.5 w-3.5" strokeWidth={2.4} />
         {Math.abs(value).toFixed(1)}%
       </span>
-      {!compact && <span className="text-[11px] text-muted">{suffix}</span>}
+      {!compact && <span className="hidden text-[11px] text-muted sm:inline">{suffix}</span>}
     </div>
   )
 }

@@ -13,7 +13,7 @@ export function DashboardPage() {
 
       {/* Sales trend + shift + alerts */}
       <div className="grid gap-3 xl:grid-cols-3">
-        <div className="xl:col-span-2">
+        <div className="min-w-0 xl:col-span-2">
           <SalesTrendCard />
         </div>
         <AlertsFeed />
@@ -21,7 +21,7 @@ export function DashboardPage() {
 
       {/* Shift comparison + bank panel */}
       <div className="grid gap-3 xl:grid-cols-3">
-        <div className="xl:col-span-2">
+        <div className="min-w-0 xl:col-span-2">
           <ShiftComparisonCard />
         </div>
         <BankPanel />
@@ -32,7 +32,7 @@ export function DashboardPage() {
 
       {/* Credit customers + cash reconciliation */}
       <div className="grid gap-3 xl:grid-cols-3">
-        <div className="xl:col-span-2">
+        <div className="min-w-0 xl:col-span-2">
           <CreditCustomers />
         </div>
         <CashReconciliation />

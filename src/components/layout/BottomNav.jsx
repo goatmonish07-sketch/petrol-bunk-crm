@@ -1,9 +1,7 @@
-import { NAV } from '../../lib/nav'
+import { MOBILE_NAV } from '../../lib/nav'
 import { Icon } from '../ui/Icon'
 
-const items = NAV.filter((n) => n.mobile).concat({
-  id: 'more', label: 'More', icon: 'MoreHorizontal',
-})
+const items = MOBILE_NAV.concat({ id: 'more', label: 'More', icon: 'MoreHorizontal' })
 
 export function BottomNav({ active, onNavigate, onMore }) {
   return (
@@ -24,10 +22,8 @@ export function BottomNav({ active, onNavigate, onMore }) {
               aria-current={isActive ? 'page' : undefined}
             >
               <Icon name={item.icon} className="h-[22px] w-[22px]" strokeWidth={isActive ? 2.4 : 2} />
-              {item.label === 'Fuel Stock' ? 'Stock' : item.label === 'Credit Customers' ? 'Credit' : item.label}
-              {item.badge && (
-                <span className="absolute right-4 top-1 h-2 w-2 rounded-full bg-petrol" />
-              )}
+              {item.label}
+              {item.badge && <span className="absolute right-5 top-1 h-2 w-2 rounded-full bg-petrol" />}
             </button>
           )
         })}
