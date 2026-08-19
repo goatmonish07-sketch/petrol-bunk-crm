@@ -1,0 +1,56 @@
+/* Design tokens — warm "editorial paper" system matched to the approved mockup.
+   Values are space-separated RGB channels for Tailwind's
+   `rgb(var(--x) / <alpha>)` pattern. Light is default; [data-theme="dark"] overrides. */
+
+:root {
+  --bg: 238 233 223; /* warm cream canvas */
+  --surface: 251 249 243; /* card paper */
+  --surface-2: 244 240 231; /* nested / table header */
+  --border: 226 219 204; /* warm hairline */
+  --ink: 24 30 46; /* near-navy text */
+  --muted: 122 116 102; /* warm gray */
+
+  --brand: 17 20 29; /* charcoal-navy sidebar / primary */
+  --brand-ink: 244 240 231;
+
+  /* Chart + data */
+  --data: 27 36 54; /* primary navy series */
+  --data-2: 214 204 187; /* tan secondary series */
+
+  /* Fuel + entity accents (used sparingly for icons/dots) */
+  --petrol: 197 138 47; /* amber */
+  --diesel: 47 122 90; /* green */
+  --lube: 108 92 168; /* muted violet */
+
+  /* Semantic status */
+  --positive: 47 122 90; /* good / excess */
+  --negative: 183 65 65; /* over limit / short */
+  --warn: 176 132 38; /* near limit */
+
+  --shadow-card: 0 1px 2px rgb(40 34 22 / 0.05), 0 6px 20px rgb(40 34 22 / 0.06);
+}
+
+[data-theme='dark'] {
+  --bg: 16 17 22;
+  --surface: 25 27 34;
+  --surface-2: 32 35 44;
+  --border: 46 50 62;
+  --ink: 233 231 224;
+  --muted: 156 152 140;
+
+  --brand: 9 10 14;
+  --brand-ink: 233 231 224;
+
+  --data: 176 190 220;
+  --data-2: 86 78 62;
+
+  --petrol: 219 162 74;
+  --diesel: 76 173 129;
+  --lube: 150 134 214;
+
+  --positive: 76 173 129;
+  --negative: 224 108 108;
+  --warn: 214 168 70;
+
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 6px 20px rgb(0 0 0 / 0.35);
+}
