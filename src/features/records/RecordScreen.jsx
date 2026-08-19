@@ -6,6 +6,7 @@ import { Field } from '../../components/ui/Field'
 import { Badge, StatusBadge } from '../../components/ui/Badge'
 import { Icon } from '../../components/ui/Icon'
 import { formatINR, formatNumber, formatInt } from '../../lib/format'
+import { onExport } from '../../lib/csv'
 
 function fmt(col, row) {
   const v = row[col.key]
@@ -98,7 +99,7 @@ export function RecordScreen({ config }) {
       )}
 
       {/* Filters */}
-      {config.filters && (
+      {config.filters?.length > 0 && (
         <Card className="card-pad">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {config.filters.map((f) => (
@@ -124,7 +125,11 @@ export function RecordScreen({ config }) {
             </div>
             <div className="flex flex-wrap items-center gap-2">
               {(config.table.exports || ['CSV', 'PDF']).map((e) => (
-                <button key={e} className="rounded-lg border border-border px-3 py-1.5 text-[12px] font-semibold text-muted hover:bg-surface-2 hover:text-ink">
+                <button
+                  key={e}
+                  onClick={() => onExport(e, config.title, config.table.columns, filtered)}
+                  className="rounded-lg border border-border px-3 py-1.5 text-[12px] font-semibold text-muted hover:bg-surface-2 hover:text-ink"
+                >
                   {e}
                 </button>
               ))}

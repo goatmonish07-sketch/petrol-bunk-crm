@@ -436,12 +436,12 @@ export const SCREENS = {
   },
 
   // ---------------- Master ----------------
-  'm-products': {
-    title: 'Products',
-    form: { title: 'Add Product', fields: [
+  'm-fuel-products': {
+    title: 'Fuel Products',
+    form: { title: 'Add Fuel Product', fields: [
       { name: 'name', label: 'Product Name', type: 'text', required: true },
       { name: 'hsn', label: 'HSN Code', type: 'text' },
-      { name: 'unit', label: 'Unit', type: 'select', options: ['Ltr', 'Nos'] },
+      { name: 'unit', label: 'Unit', type: 'select', options: ['Ltr'] },
       { name: 'rate', label: 'Rate', type: 'number' },
     ], submitLabel: 'Save Product' },
     table: { minWidth: 520, columns: [
@@ -450,35 +450,38 @@ export const SCREENS = {
     ], rows: [
       { id: 1, sno: 1, name: 'Petrol (MS)', hsn: '27101290', unit: 'Ltr', rate: 102.6 },
       { id: 2, sno: 2, name: 'Diesel (HSD)', hsn: '27101930', unit: 'Ltr', rate: 91.1 },
-      { id: 3, sno: 3, name: 'Engine Oil 15W40', hsn: '27101980', unit: 'Ltr', rate: 480 },
+      { id: 3, sno: 3, name: 'Power / XP95', hsn: '27101290', unit: 'Ltr', rate: 108.4 },
     ] },
   },
 
-  'm-vendors': {
-    title: 'Vendors',
-    form: { title: 'Add Vendor', fields: [
-      { name: 'name', label: 'Vendor Name', type: 'text', required: true },
-      { name: 'gstin', label: 'GSTIN', type: 'text' },
-      { name: 'phone', label: 'Phone', type: 'text' },
-      { name: 'opening', label: 'Opening Balance', type: 'number' },
-    ], submitLabel: 'Save Vendor' },
+  'm-lubricants': {
+    title: 'Lubricants',
+    form: { title: 'Add Lubricant', fields: [
+      { name: 'name', label: 'Lubricant Name', type: 'text', required: true },
+      { name: 'brand', label: 'Brand', type: 'select', options: ['Castrol', 'Servo', 'Shell', 'HP'] },
+      { name: 'unit', label: 'Unit', type: 'select', options: ['Ltr', 'Nos'] },
+      { name: 'rate', label: 'Rate', type: 'number' },
+    ], submitLabel: 'Save Lubricant' },
     table: { minWidth: 520, columns: [
-      { key: 'sno', label: 'S.No' }, { key: 'name', label: 'Vendor', sortable: true }, { key: 'gstin', label: 'GSTIN' }, { key: 'phone', label: 'Phone' },
+      { key: 'sno', label: 'S.No' }, { key: 'name', label: 'Lubricant', sortable: true }, { key: 'brand', label: 'Brand' },
+      { key: 'unit', label: 'Unit' }, { key: 'rate', label: 'Rate', align: 'right', format: 'inr' },
     ], rows: [
-      { id: 1, sno: 1, name: 'IOCL', gstin: '33AAACI1681G1Z', phone: '18002333555' },
-      { id: 2, sno: 2, name: 'Castrol Distributor', gstin: '33AACCC1234F1Z', phone: '9840012345' },
+      { id: 1, sno: 1, name: 'Engine Oil 15W40', brand: 'Castrol', unit: 'Ltr', rate: 480 },
+      { id: 2, sno: 2, name: 'Coolant', brand: 'Shell', unit: 'Ltr', rate: 260 },
+      { id: 3, sno: 3, name: '2T Oil Sachet', brand: 'Servo', unit: 'Nos', rate: 55 },
     ] },
   },
 
-  'm-customers': {
-    title: 'Customers',
-    form: { title: 'Add Customer', fields: [
+  'm-credit-customer': {
+    title: 'Credit Customer',
+    form: { title: 'Add Credit Customer', fields: [
       { name: 'name', label: 'Customer Name', type: 'text', required: true },
       { name: 'mobile', label: 'Mobile', type: 'text' },
       { name: 'creditLimit', label: 'Credit Limit', type: 'number' },
+      { name: 'gstin', label: 'GSTIN', type: 'text' },
       { name: 'opening', label: 'Opening Balance', type: 'number' },
     ], submitLabel: 'Save Customer' },
-    table: { minWidth: 560, initialSort: { key: 'creditLimit', dir: 'desc' }, columns: [
+    table: { minWidth: 600, initialSort: { key: 'creditLimit', dir: 'desc' }, columns: [
       { key: 'sno', label: 'S.No' }, { key: 'name', label: 'Customer', sortable: true }, { key: 'mobile', label: 'Mobile' },
       { key: 'creditLimit', label: 'Credit Limit', align: 'right', sortable: true, format: 'inr' },
     ], rows: [
@@ -486,22 +489,6 @@ export const SCREENS = {
       { id: 2, sno: 2, name: 'Kaveri Enterprises', mobile: '8765432109', creditLimit: 300000 },
       { id: 3, sno: 3, name: 'Raman Stores', mobile: '7654321098', creditLimit: 250000 },
       { id: 4, sno: 4, name: 'A S Gurusamy', mobile: '7540070023', creditLimit: 200000 },
-    ] },
-  },
-
-  'm-banks': {
-    title: 'Banks',
-    form: { title: 'Add Bank', fields: [
-      { name: 'name', label: 'Bank Name', type: 'text', required: true },
-      { name: 'account', label: 'Account No', type: 'text' },
-      { name: 'ifsc', label: 'IFSC', type: 'text' },
-      { name: 'opening', label: 'Opening Balance', type: 'number' },
-    ], submitLabel: 'Save Bank' },
-    table: { minWidth: 480, columns: [
-      { key: 'sno', label: 'S.No' }, { key: 'name', label: 'Bank' }, { key: 'account', label: 'Account No' }, { key: 'ifsc', label: 'IFSC' },
-    ], rows: [
-      { id: 1, sno: 1, name: 'ICICI Bank', account: '1234 5678 9012', ifsc: 'ICIC0000123' },
-      { id: 2, sno: 2, name: 'Indian Bank', account: '9876 5432 1098', ifsc: 'IDIB000V123' },
     ] },
   },
 
@@ -522,18 +509,166 @@ export const SCREENS = {
     ] },
   },
 
-  'm-nozzles': {
-    title: 'Nozzles & Tanks',
-    form: { title: 'Add Nozzle', fields: [
+  'm-expense-types': {
+    title: 'Expense Types',
+    form: { title: 'Add Expense Type', fields: [
+      { name: 'name', label: 'Expense Head', type: 'text', required: true },
+    ], submitLabel: 'Save' },
+    table: { minWidth: 360, columns: [
+      { key: 'sno', label: 'S.No' }, { key: 'name', label: 'Expense Head' },
+    ], rows: [
+      { id: 1, sno: 1, name: 'Salary' }, { id: 2, sno: 2, name: 'Electricity' },
+      { id: 3, sno: 3, name: 'Maintenance' }, { id: 4, sno: 4, name: 'Fuel Testing' },
+      { id: 5, sno: 5, name: 'Stationery' }, { id: 6, sno: 6, name: 'Miscellaneous' },
+    ] },
+  },
+
+  'm-crdr-party': {
+    title: 'Business Crd / Debit Party',
+    form: { title: 'Add Party', fields: [
+      { name: 'name', label: 'Party Name', type: 'text', required: true },
+      { name: 'type', label: 'Type', type: 'radio', options: ['Credit', 'Debit'] },
+      { name: 'opening', label: 'Opening Balance', type: 'number' },
+    ], submitLabel: 'Save' },
+    table: { minWidth: 420, columns: [
+      { key: 'sno', label: 'S.No' }, { key: 'name', label: 'Party' }, { key: 'type', label: 'Type' },
+    ], rows: [
+      { id: 1, sno: 1, name: 'Owner Drawings', type: 'Debit' },
+      { id: 2, sno: 2, name: 'Capital Account', type: 'Credit' },
+    ] },
+  },
+
+  'm-vendor': {
+    title: 'Vendor',
+    form: { title: 'Add Vendor', fields: [
+      { name: 'name', label: 'Vendor Name', type: 'text', required: true },
+      { name: 'gstin', label: 'GSTIN', type: 'text' },
+      { name: 'phone', label: 'Phone', type: 'text' },
+      { name: 'opening', label: 'Opening Balance', type: 'number' },
+    ], submitLabel: 'Save Vendor' },
+    table: { minWidth: 520, columns: [
+      { key: 'sno', label: 'S.No' }, { key: 'name', label: 'Vendor', sortable: true }, { key: 'gstin', label: 'GSTIN' }, { key: 'phone', label: 'Phone' },
+    ], rows: [
+      { id: 1, sno: 1, name: 'IOCL', gstin: '33AAACI1681G1Z', phone: '18002333555' },
+      { id: 2, sno: 2, name: 'Castrol Distributor', gstin: '33AACCC1234F1Z', phone: '9840012345' },
+      { id: 3, sno: 3, name: 'D WATER', gstin: '33AAAFD9876H1Z', phone: '9840099887' },
+    ] },
+  },
+
+  'm-swipe-machines': {
+    title: 'Swipe Machines',
+    form: { title: 'Add Swipe Machine', fields: [
+      { name: 'name', label: 'Machine Name', type: 'text', required: true },
+      { name: 'bank', label: 'Bank', type: 'select', options: ['ICICI Bank', 'Indian Bank'] },
+      { name: 'tid', label: 'Terminal ID', type: 'text' },
+    ], submitLabel: 'Save' },
+    table: { minWidth: 460, columns: [
+      { key: 'sno', label: 'S.No' }, { key: 'name', label: 'Machine' }, { key: 'bank', label: 'Bank' }, { key: 'tid', label: 'Terminal ID' },
+    ], rows: [
+      { id: 1, sno: 1, name: 'POS-Counter 1', bank: 'ICICI Bank', tid: 'ICI2201' },
+      { id: 2, sno: 2, name: 'POS-Counter 2', bank: 'Indian Bank', tid: 'IB4487' },
+    ] },
+  },
+
+  'm-expiry-items': {
+    title: 'Expiry Items',
+    blurb: 'Lubricants and consumables nearing expiry.',
+    table: { minWidth: 520, columns: [
+      { key: 'sno', label: 'S.No' }, { key: 'name', label: 'Item' }, { key: 'batch', label: 'Batch' },
+      { key: 'qty', label: 'Qty', align: 'right', format: 'number' }, { key: 'expiry', label: 'Expiry' },
+    ], rows: [
+      { id: 1, sno: 1, name: 'Coolant', batch: 'CL-2207', qty: 6, expiry: 'Sep 2026' },
+      { id: 2, sno: 2, name: '2T Oil Sachet', batch: 'ST-1190', qty: 40, expiry: 'Nov 2026' },
+    ] },
+  },
+
+  'm-tank-nozzle': {
+    title: 'Tank & Nozzel',
+    form: { title: 'Add Tank / Nozzle', fields: [
       { name: 'name', label: 'Nozzle', type: 'text', required: true },
       { name: 'product', label: 'Product', type: 'select', options: ['Petrol (MS)', 'Diesel (HSD)'] },
       { name: 'tank', label: 'Tank', type: 'select', options: ['Petrol Tank', 'Diesel Tank'] },
+      { name: 'capacity', label: 'Tank Capacity (Ltr)', type: 'number' },
     ], submitLabel: 'Save' },
-    table: { minWidth: 480, columns: [
-      { key: 'sno', label: 'S.No' }, { key: 'name', label: 'Nozzle' }, { key: 'product', label: 'Product' }, { key: 'tank', label: 'Tank' },
+    table: { minWidth: 560, columns: [
+      { key: 'sno', label: 'S.No' }, { key: 'name', label: 'Nozzle' }, { key: 'product', label: 'Product' },
+      { key: 'tank', label: 'Tank' }, { key: 'capacity', label: 'Capacity', align: 'right', format: 'number' },
     ], rows: [
-      { id: 1, sno: 1, name: 'MPD-1', product: 'Petrol (MS)', tank: 'Petrol Tank' },
-      { id: 2, sno: 2, name: 'MPD-3', product: 'Diesel (HSD)', tank: 'Diesel Tank' },
+      { id: 1, sno: 1, name: 'MPD-1', product: 'Petrol (MS)', tank: 'Petrol Tank', capacity: 30000 },
+      { id: 2, sno: 2, name: 'MPD-3', product: 'Diesel (HSD)', tank: 'Diesel Tank', capacity: 40000 },
+    ] },
+  },
+
+  'm-pump-setting': {
+    title: 'Pump Setting',
+    form: { title: 'Pump Configuration', fields: [
+      { name: 'pump', label: 'Pump', type: 'select', options: ['Pump 1', 'Pump 2', 'Pump 3'] },
+      { name: 'nozzles', label: 'No. of Nozzles', type: 'number' },
+      { name: 'product', label: 'Default Product', type: 'select', options: ['Petrol (MS)', 'Diesel (HSD)'] },
+    ], submitLabel: 'Save Setting' },
+    table: { minWidth: 460, columns: [
+      { key: 'sno', label: 'S.No' }, { key: 'pump', label: 'Pump' }, { key: 'nozzles', label: 'Nozzles', align: 'right', format: 'number' }, { key: 'product', label: 'Product' },
+    ], rows: [
+      { id: 1, sno: 1, pump: 'Pump 1', nozzles: 2, product: 'Petrol (MS)' },
+      { id: 2, sno: 2, pump: 'Pump 2', nozzles: 2, product: 'Diesel (HSD)' },
+    ] },
+  },
+
+  'm-dutypay-shift': {
+    title: 'DutyPay Shift',
+    form: { title: 'Shift Configuration', fields: [
+      { name: 'name', label: 'Shift Name', type: 'text', required: true },
+      { name: 'from', label: 'From Time', type: 'text' },
+      { name: 'to', label: 'To Time', type: 'text' },
+    ], submitLabel: 'Save Shift' },
+    table: { minWidth: 460, columns: [
+      { key: 'sno', label: 'S.No' }, { key: 'name', label: 'Shift' }, { key: 'from', label: 'From' }, { key: 'to', label: 'To' },
+    ], rows: [
+      { id: 1, sno: 1, name: 'Morning', from: '06:00 AM', to: '02:00 PM' },
+      { id: 2, sno: 2, name: 'Evening', from: '02:00 PM', to: '10:00 PM' },
+    ] },
+  },
+
+  'm-print-templates': {
+    title: 'Print Templates',
+    table: { minWidth: 480, columns: [
+      { key: 'sno', label: 'S.No' }, { key: 'name', label: 'Template' }, { key: 'type', label: 'Type' }, { key: 'status', label: 'Status', format: 'badge', tone: () => 'positive' },
+    ], rows: [
+      { id: 1, sno: 1, name: 'Sale Invoice', type: 'Invoice', status: 'Active' },
+      { id: 2, sno: 2, name: 'Statement', type: 'Statement', status: 'Active' },
+      { id: 3, sno: 3, name: 'Credit Bill', type: 'Bill', status: 'Active' },
+    ] },
+  },
+
+  'm-guest-entry': {
+    title: 'Guest Entry',
+    form: { title: 'Add Guest Customer', fields: [
+      { name: 'name', label: 'Guest Name', type: 'text', required: true },
+      { name: 'mobile', label: 'Mobile', type: 'text' },
+      { name: 'vehicle', label: 'Vehicle No', type: 'text' },
+    ], submitLabel: 'Save Guest' },
+    table: { minWidth: 480, columns: [
+      { key: 'sno', label: 'S.No' }, { key: 'name', label: 'Guest' }, { key: 'mobile', label: 'Mobile' }, { key: 'vehicle', label: 'Vehicle No' },
+    ], rows: [
+      { id: 1, sno: 1, name: 'Walk-in Guest', mobile: '9000000001', vehicle: 'TN-01-AB-1234' },
+    ] },
+  },
+
+  'm-denominations': {
+    title: 'Denominations',
+    blurb: 'Cash denomination count for day settlement.',
+    form: { title: 'Denomination Count', fields: [
+      { name: 'note', label: 'Note (₹)', type: 'select', options: ['500', '200', '100', '50', '20', '10', 'Coins'] },
+      { name: 'count', label: 'Count', type: 'number' },
+    ], submitLabel: 'Add' },
+    table: { minWidth: 420, columns: [
+      { key: 'sno', label: 'S.No' }, { key: 'note', label: 'Note (₹)' }, { key: 'count', label: 'Count', align: 'right', format: 'number' },
+      { key: 'total', label: 'Total', align: 'right', format: 'inr' },
+    ], rows: [
+      { id: 1, sno: 1, note: '500', count: 620, total: 310000 },
+      { id: 2, sno: 2, note: '200', count: 210, total: 42000 },
+      { id: 3, sno: 3, note: '100', count: 480, total: 48000 },
+      { id: 4, sno: 4, note: '50', count: 120, total: 6000 },
     ] },
   },
 }

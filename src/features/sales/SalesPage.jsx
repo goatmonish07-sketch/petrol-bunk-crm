@@ -8,6 +8,7 @@ import { Icon } from '../../components/ui/Icon'
 import { SalesTrendCard, ShiftComparisonCard } from '../dashboard/SalesAnalytics'
 import { salesTxns } from '../../mock/modules'
 import { formatINR, formatNumber } from '../../lib/format'
+import { downloadCSV } from '../../lib/csv'
 
 const PRODUCTS = ['All', 'Petrol', 'Diesel', 'Lubricants']
 const MODE_TONE = { Cash: 'neutral', UPI: 'positive', Card: 'neutral', Credit: 'warn' }
@@ -48,7 +49,12 @@ export function SalesPage() {
         blurb="Every fuel and lubricant sale for the selected day, by shift, nozzle and product."
         actions={
           <>
-            <button className="btn-ghost"><Icon name="Download" className="h-4 w-4" /> Export</button>
+            <button
+              className="btn-ghost"
+              onClick={() => downloadCSV('Sale_Transactions', columns.map((c) => ({ key: c.key, label: c.label })), rows)}
+            >
+              <Icon name="Download" className="h-4 w-4" /> Export
+            </button>
             <button className="btn-primary"><Icon name="Plus" className="h-4 w-4" /> New Sale</button>
           </>
         }

@@ -4,6 +4,7 @@ import { DataTable } from '../../components/ui/DataTable'
 import { MiniStat } from '../../components/ui/Filters'
 import { Badge } from '../../components/ui/Badge'
 import { Icon } from '../../components/ui/Icon'
+import { ExportButton } from '../../components/ui/ExportButton'
 import { FuelStockPanel } from '../dashboard/FuelStockPanel'
 import { stockItems, purchases } from '../../mock/modules'
 import { formatINR, formatNumber, formatInt } from '../../lib/format'
@@ -61,14 +62,20 @@ export function StockPage() {
       <FuelStockPanel />
 
       <Card className="card-pad">
-        <CardHeader title="Product Stock Register" />
+        <CardHeader
+          title="Product Stock Register"
+          action={<ExportButton filename="Stock_Register" columns={stockCols} rows={stockItems} />}
+        />
         <div className="mt-3">
           <DataTable columns={stockCols} rows={stockItems} initialSort={{ key: 'closing', dir: 'asc' }} minWidth={720} />
         </div>
       </Card>
 
       <Card className="card-pad">
-        <CardHeader title="Purchase Orders" />
+        <CardHeader
+          title="Purchase Orders"
+          action={<ExportButton filename="Purchase_Orders" columns={poCols} rows={purchases} />}
+        />
         <div className="mt-3">
           <DataTable columns={poCols} rows={purchases} initialSort={{ key: 'id', dir: 'desc' }} minWidth={720} />
         </div>

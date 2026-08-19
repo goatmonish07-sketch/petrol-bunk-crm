@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Card, CardHeader } from '../../components/ui/Card'
 import { Icon } from '../../components/ui/Icon'
 import { StatusBadge } from '../../components/ui/Badge'
+import { ExportButton } from '../../components/ui/ExportButton'
 import { customers, creditSummary } from '../../mock/dashboard'
 import { formatINR, formatCompactINR } from '../../lib/format'
 import { cssVar } from '../../lib/constants'
@@ -53,14 +54,25 @@ export function CreditCustomers() {
       <CardHeader
         title="Credit Customers"
         action={
-          <div className="relative hidden sm:block">
-            <Icon name="Search" className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted" />
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search customer…"
-              className="w-48 rounded-lg border border-border bg-surface-2 py-1.5 pl-8 pr-2 text-[13px] focus:outline-none"
+          <div className="flex items-center gap-2">
+            <ExportButton
+              filename="Credit_Customers"
+              columns={[
+                { key: 'name', label: 'Customer' }, { key: 'mobile', label: 'Mobile' },
+                { key: 'limit', label: 'Credit Limit' }, { key: 'due', label: 'Due Amount' },
+                { key: 'lastPaid', label: 'Last Paid' }, { key: 'status', label: 'Status' },
+              ]}
+              rows={rows}
             />
+            <div className="relative hidden sm:block">
+              <Icon name="Search" className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted" />
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search customer…"
+                className="w-40 rounded-lg border border-border bg-surface-2 py-1.5 pl-8 pr-2 text-[13px] focus:outline-none"
+              />
+            </div>
           </div>
         }
       />
